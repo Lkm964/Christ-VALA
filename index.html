@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pour Chriss 💕</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="h-full romantic-bg overflow-hidden">
+  <div id="app" class="w-full h-full relative">
+
+    <!-- SCENE 1 -->
+    <div id="scene1" class="scene active">
+      <p id="name-display" class="font-romantic shimmer-text text-3xl mb-8">
+        Pour Chriss 💕
+      </p>
+
+      <div class="main-heart heart-glow" onclick="revealLoveLetter()">
+        ❤️
+        <p class="hint">Clique sur mon cœur 💕</p>
+      </div>
+    </div>
+
+    <!-- SCENE 2 -->
+    <div id="scene2" class="scene">
+      <h1 id="letter-recipient" class="font-romantic shimmer-text text-5xl mb-6">
+        Ma chère Chriss
+      </h1>
+
+      <p id="love-message" class="font-elegant text-xl"></p>
+      <span id="cursor" class="cursor"></span>
+
+      <div id="signature" class="hidden mt-6">
+        <p class="font-romantic text-3xl">Avec tout mon amour 💕</p>
+      </div>
+
+      <div id="response-buttons" class="hidden mt-8 flex gap-4">
+        <button onclick="showRejection()">Ça ne me plaît pas 😢</button>
+        <button onclick="showAcceptance()">Ça me fait plaisir 💖</button>
+      </div>
+    </div>
+
+    <!-- SCENE 3 -->
+    <div id="scene3" class="scene">
+      <p id="rejection-text"></p>
+      <button onclick="goBack()">Revenir 🔙</button>
+    </div>
+
+    <!-- SCENE 4 -->
+    <div id="scene4" class="scene">
+      <p id="acceptance-text"></p>
+      <button onclick="goBack()">Revenir 🔙</button>
+    </div>
+
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
