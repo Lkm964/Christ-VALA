@@ -3,67 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pour Chriss 💕</title>
+  <title>Pour Amy 💕</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { box-sizing: border-box; }
+    .font-romantic { font-family: 'Great Vibes', cursive; }
+    .font-elegant { font-family: 'Playfair Display', serif; }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+    .scene-1-bg {
+      background: radial-gradient(ellipse at center, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 60%, #f9a8d4 100%);
+    }
+
+    .scene-2-bg {
+      background: linear-gradient(135deg, #831843, #be185d, #db2777, #ec4899, #f472b6);
+    }
+
+    @keyframes heartbeat {
+      0%,100%{transform:scale(1)}
+      15%{transform:scale(1.15)}
+      30%{transform:scale(1)}
+      45%{transform:scale(1.1)}
+    }
+
+    .heart-pulse { animation: heartbeat 1.5s infinite; }
+  </style>
 </head>
 
-<body class="h-full romantic-bg overflow-hidden">
-  <div id="app" class="w-full h-full relative">
+<body class="h-full m-0 p-0 overflow-hidden">
 
-    <!-- SCENE 1 -->
-    <div id="scene1" class="scene active">
-      <p id="name-display" class="font-romantic shimmer-text text-3xl mb-8">
-        Pour Chriss 💕
-      </p>
+<!-- 🔊 AUDIO AJOUTÉ -->
+<audio id="heartSound" preload="auto">
+  <source src="heart.mp3" type="audio/mpeg">
+</audio>
 
-      <div class="main-heart heart-glow" onclick="revealLoveLetter()">
-        ❤️
-        <p class="hint">Clique sur mon cœur 💕</p>
-      </div>
-    </div>
+<div id="app" class="w-full h-full relative">
 
-    <!-- SCENE 2 -->
-    <div id="scene2" class="scene">
-      <h1 id="letter-recipient" class="font-romantic shimmer-text text-5xl mb-6">
-        Ma chère Chriss
-      </h1>
-
-      <p id="love-message" class="font-elegant text-xl"></p>
-      <span id="cursor" class="cursor"></span>
-
-      <div id="signature" class="hidden mt-6">
-        <p class="font-romantic text-3xl">Avec tout mon amour 💕</p>
-      </div>
-
-      <div id="response-buttons" class="hidden mt-8 flex gap-4">
-        <button onclick="showRejection()">Ça ne me plaît pas 😢</button>
-        <button onclick="showAcceptance()">Ça me fait plaisir 💖</button>
-      </div>
-    </div>
-
-    <!-- SCENE 3 -->
-    <div id="scene3" class="scene">
-      <p id="rejection-text"></p>
-      <button onclick="goBack()">Revenir 🔙</button>
-    </div>
-
-    <!-- SCENE 4 -->
-    <div id="scene4" class="scene">
-      <p id="acceptance-text"></p>
-      <button onclick="goBack()">Revenir 🔙</button>
-    </div>
-
+  <!-- SCÈNE 1 -->
+  <div id="scene1" class="w-full h-full scene-1-bg flex flex-col items-center justify-center">
+    <button id="main-heart" class="heart-pulse bg-transparent border-none cursor-pointer">
+      <svg width="200" height="200" viewBox="0 0 100 100">
+        <path d="M50 88 C20 60,5 40,15 25 C25 10,45 15,50 30 C55 15,75 10,85 25 C95 40,80 60,50 88Z"
+              fill="#ec4899"/>
+      </svg>
+    </button>
+    <p class="mt-6 font-elegant text-pink-600">Clique sur mon cœur 💕</p>
   </div>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+  <!-- SCÈNE 2 -->
+  <div id="scene2"
+       class="w-full h-full scene-2-bg absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-700">
+    <h1 class="font-romantic text-5xl text-white">Mon Amy 💖</h1>
+  </div>
+
+</div>
+
+<script>
+  const heartBtn = document.getElementById("main-heart");
+  const audio = document.getElementById("heartSound");
+  const scene1 = document.getElementById("scene1");
+  const scene2 = document.getElementById("scene2");
+
+  function showScene2() {
+    scene1.style.opacity = "0";
+    scene1.style.pointerEvents = "none";
+
+    setTimeout(() => {
+      scene2.style.opacity = "1";
+      scene2.style.pointerEvents = "auto";
+    }, 500);
+  }
+
+  heartBtn.addEventListener("click", () => {
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+    showScene2();
+  });
+</script>
+
 </body>
 </html>
